@@ -21,13 +21,14 @@ class Artist
 
   def save
     Artist.all << self
+    self
   end
 
   def self.find_or_create_by_name name
     if self.all.find {|artist| artist.name == name}
-      self
+      self.all.find {|artist| artist.name == name}
     else
-      self.new(name).tap {|artist| artist.save}
+      self.new(name).save
     end
   end
 
